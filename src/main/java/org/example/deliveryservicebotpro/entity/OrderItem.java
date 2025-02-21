@@ -5,18 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Product {
+@Data
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private Double price;
     @ManyToOne
-    private Category category;
+    private Order order;
     @ManyToOne
-    private Attachment photo;
+    private Product product;
+    private Integer amount;
 }

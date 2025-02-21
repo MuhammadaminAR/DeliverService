@@ -4,19 +4,22 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.deliveryservicebotpro.enums.OrderStatus;
 
-@Data
+import java.time.LocalDateTime;
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Product {
+@Data
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private Double price;
+    private LocalDateTime orderDate;
     @ManyToOne
-    private Category category;
-    @ManyToOne
-    private Attachment photo;
+    private TelegramUser telegramUser;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 }

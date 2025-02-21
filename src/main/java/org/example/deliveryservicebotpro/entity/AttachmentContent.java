@@ -2,21 +2,20 @@ package org.example.deliveryservicebotpro.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Product {
+@Builder
+@Data
+public class AttachmentContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private Double price;
-    @ManyToOne
-    private Category category;
-    @ManyToOne
-    private Attachment photo;
+    private byte[] content;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Attachment attachment;
 }
